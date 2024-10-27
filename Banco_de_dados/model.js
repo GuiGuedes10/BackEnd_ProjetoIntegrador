@@ -1,7 +1,15 @@
 import { Sequelize, DataTypes } from "sequelize";
+import 'dotenv/config'
 
-export const sequelize = new Sequelize("xe", "system", "1008",{
-    host: "localhost",
+const host = process.env.HOST_DB
+const pass  = process.env.PASS_DB
+const user  = process.env.USER_BD
+const name  = process.env.NAME_DB
+
+
+
+export const sequelize = new Sequelize(name, user, pass,{
+    host,
     dialect: "oracle"
 });
 export const User = sequelize.define("Pi_User", {
@@ -20,7 +28,8 @@ export const User = sequelize.define("Pi_User", {
     },
     CPF:{
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
+        unique: true
     },
     Senha : {
         type: DataTypes.STRING,
