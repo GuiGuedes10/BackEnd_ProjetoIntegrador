@@ -7,7 +7,7 @@ to avoid mistakes with cors, use:
 npm install dotenv --save
 
 for tolkien creation and hash: 
-  npm install jsonwebtoken
+  npm install jsonwebtoken,
   npm install bcrypt
   
 We use a ORM for Oracle database:
