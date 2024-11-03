@@ -22,7 +22,7 @@ app.post('/cadastro_usuario', async(req, res) => {
   bcrypt.genSalt(saltRounds, (err, salt) =>{
     if(err){
       console.error('Error on generate salt: ' + err);
-      res.status(500).send({error_message: 'Erro no servidor. Tentar novamnete mais tarde'})
+      res.status(500).send({error_message: 'Erro no servidor. Tentar novamente mais tarde'})
       return;
     }
   bcrypt.hash(data.Senha, salt, async (err, hash) =>{
