@@ -9,7 +9,7 @@ import { get_usuarios } from "./routes/user/get_usuarios.js";
 import { login } from "./routes/sessions/login.js";
 import { validateToken } from "./routes/sessions/validade-token.js";
 import { create_exercise } from "./routes/exercises/create-exercise.js";
-import { create_user_exercise } from "./routes/User_Exercises/create-user-exercise.js";
+import { create_user_exercise } from "./routes/user_exercises/create-user-exercise.js";
 import { create_user_training } from "./routes/user_training/create-user-training.js";
 import { add_user_exercise_to_training } from "./routes/user_training/add-user-exercise-to-training.js";
 import { get_training } from "./routes/user_training/get-training.js";
