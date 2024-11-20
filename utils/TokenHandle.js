@@ -28,3 +28,17 @@ export function CreateToken(id){
       });
     return token;
 }
+
+export function TokenDecode(token){
+    if(!token){
+        return null
+    }
+    
+    const decoded = jwt.verify(token, process.env.JWT_KEY);
+
+    if(!decoded){
+        return null
+   }
+   
+   return decoded
+}

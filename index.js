@@ -4,19 +4,19 @@ import "dotenv/config";
 
 import { syncDB } from "./Banco_de_dados/index.js";
 
-import { cadastro_usuario } from "./routes/user/cadastro_usuario.js";
-import { get_usuarios } from "./routes/user/get_usuarios.js";
-import { login } from "./routes/sessions/login.js";
-import { validateToken } from "./routes/sessions/validade-token.js";
-import { create_exercise } from "./routes/exercises/create-exercise.js";
-import { create_user_exercise } from "./routes/user_exercises/create-user-exercise.js";
-import { create_user_training } from "./routes/user_training/create-user-training.js";
-import { add_user_exercise_to_training } from "./routes/user_training/add-user-exercise-to-training.js";
-import { get_training } from "./routes/user_training/get-training.js";
-import { get_exercise } from "./routes/exercises/get-exercise.js";
-import { get_user_exercise } from "./routes/user_exercises/get-user-exercise.js";
-import { create_training_session } from "./routes/training_session/create-training-session.js";
-import { get_training_session } from "./routes/training_session/get-training-session.js";
+import { cadastro_usuario } from "./controllers/user/cadastro_usuario.js";
+import { get_usuarios } from "./controllers/user/get_usuarios.js";
+import { login } from "./controllers/sessions/login.js";
+import { validateToken } from "./controllers/sessions/validade-token.js";
+import { create_exercise } from "./controllers/exercises/create-exercise.js";
+import { create_user_exercise } from "./controllers/user_exercises/create-user-exercise.js";
+import { create_user_training } from "./controllers/user_training/create-user-training.js";
+import { add_user_exercise_to_training } from "./controllers/user_training/add-user-exercise-to-training.js";
+import { get_training } from "./controllers/user_training/get-training.js";
+import { get_exercise } from "./controllers/exercises/get-exercise.js";
+import { get_user_exercise } from "./controllers/user_exercises/get-user-exercise.js";
+import { create_training_session } from "./controllers/training_session/create-training-session.js";
+import { get_training_session } from "./controllers/training_session/get-training-session.js";
 
 const app = express();
 
