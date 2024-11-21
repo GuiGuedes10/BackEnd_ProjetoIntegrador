@@ -7,7 +7,7 @@ export async function get_usuarios(req, res){
     const TokenVerifed = TokenVerification(data.token)
   
     if(!TokenVerifed.valid){
-      res.status(403).send({error_message:TokenVerifed.message});
+      res.status(403).send({message:TokenVerifed.message});
       return
     }
     const rows = await User.findAll();

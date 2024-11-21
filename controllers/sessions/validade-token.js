@@ -6,13 +6,13 @@ export async function validateToken(req, res) {
     const TokenVerifed = TokenVerification(data.token);
 
   if (!TokenVerifed.valid) {
-    res.status(403).send({ error_message: TokenVerifed.message });
+    res.status(403).send({ message: TokenVerifed.message });
     return;
   }
 
-    res.status(200).send(TokenVerifed.message);
+    res.status(200).send({ message: TokenVerifed.message});
   } catch (error) {
     console.log("Error validateToken", error);
-    res.status(500).send({ error_message: "Erro ao validar token" });
+    res.status(500).send({ message: "Erro ao validar token" });
   }
 }

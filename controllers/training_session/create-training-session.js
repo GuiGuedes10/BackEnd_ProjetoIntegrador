@@ -21,7 +21,7 @@ export async function create_training_session(req, res) {
   } catch (error) {
     res
       .status(500)
-      .send({ error_message: "Erro no servidor. Tentar novamente mais tarde" });
+      .send({ message: "Erro no servidor. Tentar novamente mais tarde" });
   }
 }
 

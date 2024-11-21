@@ -4,19 +4,12 @@ import "dotenv/config";
 
 import { syncDB } from "./Banco_de_dados/index.js";
 
-import { cadastro_usuario } from "./controllers/user/cadastro_usuario.js";
-import { get_usuarios } from "./controllers/user/get_usuarios.js";
-import { login } from "./controllers/sessions/login.js";
-import { validateToken } from "./controllers/sessions/validade-token.js";
-import { create_exercise } from "./controllers/exercises/create-exercise.js";
-import { create_user_exercise } from "./controllers/user_exercises/create-user-exercise.js";
-import { create_user_training } from "./controllers/user_training/create-user-training.js";
-import { add_user_exercise_to_training } from "./controllers/user_training/add-user-exercise-to-training.js";
-import { get_training } from "./controllers/user_training/get-training.js";
-import { get_exercise } from "./controllers/exercises/get-exercise.js";
-import { get_user_exercise } from "./controllers/user_exercises/get-user-exercise.js";
-import { create_training_session } from "./controllers/training_session/create-training-session.js";
-import { get_training_session } from "./controllers/training_session/get-training-session.js";
+import { userRoute } from "./routes/user.js";
+import { userTrainingRoute } from "./routes/user_training.js";
+import { userExerciseRoute } from "./routes/user_exercises.js";
+import { trainingSessionRoute } from "./routes/training_session.js";
+import { exerciseRoute } from "./routes/exercises.js";
+import { sessionsRoute } from "./routes/sessions.js";
 
 const app = express();
 
@@ -25,41 +18,17 @@ app.use(express.json());
 
 await syncDB();
 
-app.post("/cadastro_usuario", async (req, res) => cadastro_usuario(req, res));
+app.use(userRoute);
 
-app.get("/get_usuarios", async (req, res) => get_usuarios(req, res));
+app.use(userTrainingRoute);
 
-app.post("/login", async (req, res) => login(req, res));
+app.use(userExerciseRoute);
 
-app.post("/validate-token", async (req, res) => validateToken(req, res));
+app.use(trainingSessionRoute);
 
-app.post("/create-exercise", async (req, res) => create_exercise(req, res));
+app.use(sessionsRoute);
 
-app.get("/get-exercise", async (req, res) => get_exercise(req, res));
-
-app.post("/create-user-exercise", async (req, res) =>
-  create_user_exercise(req, res)
-);
-
-app.get("/get-user-exercise", async (req, res) => get_user_exercise(req, res));
-
-app.post("/create-user-training", async (req, res) =>
-  create_user_training(req, res)
-);
-
-app.post("/add-user-exercise-to-training", async (req, res) =>
-  add_user_exercise_to_training(req, res)
-);
-
-app.get("/get-training", async (req, res) => get_training(req, res));
-
-app.post("/create-training-session", async (req, res) =>
-  create_training_session(req, res)
-);  
-
-app.get("/get-training-session", async (req, res) =>
-  get_training_session(req, res)
-);  
+app.use(exerciseRoute);
 
 const port = process.env.PORT;
 

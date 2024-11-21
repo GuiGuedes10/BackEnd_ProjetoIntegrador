@@ -9,7 +9,7 @@ export async function login(req, res){
         where:{Email: data.Email}
       });
       if(!user){
-        res.status(401).send({ error_message: "Usuario ou senha invalidos."});
+        res.status(401).send({ message: "Usuario ou senha invalidos."});
         return;
       }
   
@@ -20,11 +20,11 @@ export async function login(req, res){
         }
   
         if(results){
-          const token = CreateToken(user.id)
-          res.status(200).send({userId: user.id, token});
+          const token = CreateToken({userId: user.id, type: user.Tipo})
+          res.status(200).send({userId: user.id, type: user.Tipo, token});
         } else {
           res.status(500).send({
-            error_message: "Usuario ou senha incorretos!"
+            message: "Usuario ou senha incorretos!"
           })
         }
       })

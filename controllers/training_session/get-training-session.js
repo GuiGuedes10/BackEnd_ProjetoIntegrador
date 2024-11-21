@@ -13,7 +13,7 @@ export async function get_training_session(req, res) {
 
     if (!training_session) {
       return res.status(404).send({
-        error_message: "Sessão de treino não encontrada"
+        message: "Sessão de treino não encontrada"
       });
     }
 
@@ -23,7 +23,7 @@ export async function get_training_session(req, res) {
 
   } catch (error) {
     res.status(500).send({ 
-      error_message: "Erro no servidor. Tentar novamente mais tarde, erro: " + error 
+      message: "Erro no servidor. Tentar novamente mais tarde, erro: " + error 
     });
   }
 }

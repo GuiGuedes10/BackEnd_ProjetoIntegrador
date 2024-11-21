@@ -7,7 +7,7 @@ export async function get_user_exercise(req, res) {
     const exerciseUser = await Exercise_User.findByPk(userExerciseId);
     
     if (!exerciseUser) {
-      res.status(404).send({ error_message: "Exercício do usuário não encontrado" });
+      res.status(404).send({ message: "Exercício do usuário não encontrado" });
       return;
     }
 
@@ -15,7 +15,7 @@ export async function get_user_exercise(req, res) {
   } catch (error) {
     console.log("Error get_user_exercise:", error);
     res.status(500).send({
-      error_message: "Erro no servidor. Tentar novamente mais tarde"
+      message: "Erro no servidor. Tentar novamente mais tarde"
     });
   }
 }

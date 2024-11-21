@@ -22,8 +22,8 @@ export function TokenVerification(token){
    }
 }
 
-export function CreateToken(id){
-    const token = jwt.sign({ userId: id}, process.env.JWT_KEY, {
+export function CreateToken(payload){
+    const token = jwt.sign(payload, process.env.JWT_KEY, {
         expiresIn: '8h',
       });
     return token;
