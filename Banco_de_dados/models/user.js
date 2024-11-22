@@ -29,4 +29,9 @@ export const User = sequelize.define("Pi_User", {
     defaultValue: "Usuario",
     allowNull: false,
   },
+    Ativo: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: true,
+      allowNull: false
+    }
 });
