@@ -10,13 +10,49 @@ import { userExerciseRoute } from "./routes/user_exercises.js";
 import { trainingSessionRoute } from "./routes/training_session.js";
 import { exerciseRoute } from "./routes/exercises.js";
 import { sessionsRoute } from "./routes/sessions.js";
+import { TokenDecode, TokenVerification } from "./utils/TokenHandle.js";
+
+await syncDB();
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
 
-await syncDB();
+app.use((req, res, next) => {
+  const publicPaths = ["/cadastro_usuario", "/validate-token", "/login"];
+
+  if (!publicPaths.includes(req.path)) {
+    const token = req.headers.authorization;
+
+    if (!token) {
+      return res.status(401).json({ error: "No token provided" });
+    }
+
+    try {
+      const tokenVerification = TokenVerification(token);
+      if (!tokenVerification.valid) {
+        return res.status(401).json({ error: tokenVerification.message });
+      }
+    } catch (error) {
+      return res.status(401).json({ error: "Token validation failed" });
+    }
+  }
+
+  next();
+});
+
+app.use((req, res, next) => {
+  if (req.path === "/get_usuarios") {
+    const token = req.headers.authorization;
+    const decoded = TokenDecode(token);
+
+    if (!decoded || !["Administrador", "Gerente"].includes(decoded.type)) {
+      return res.status(403).json({ error: "Acesso não autorizado" });
+    }
+  }
+  next();
+});
 
 app.use(userRoute);
 
@@ -33,5 +69,5 @@ app.use(exerciseRoute);
 const port = process.env.PORT;
 
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
+  console.log(`App listening on port ${port}`);
 });

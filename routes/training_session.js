@@ -3,7 +3,8 @@ import {
     get_training_session,
     create_training_session,
     get_training_session_by_user_id,
-    ended_user_training_session
+    end_user_training_session,
+    get_time_training_session
 } from "../controllers/training_session/index.js";
 
 export const trainingSessionRoute = express
@@ -11,4 +12,5 @@ export const trainingSessionRoute = express
   .get("/get-training-session", get_training_session)
   .post("/create-training-session", create_training_session)
   .get("/get-all-user-session", get_training_session_by_user_id)
-  .post("/ended-user-session", ended_user_training_session);
+  .post("/end-user-training-session", end_user_training_session)
+  .get("/get-time-training-session", get_time_training_session);

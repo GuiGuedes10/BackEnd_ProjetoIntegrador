@@ -7,8 +7,7 @@ export async function get_training_session(req, res) {
     const training_session = await User_Training_Session.findOne({
       where: {
         id: trainingSessionId
-      },
-      include: ['Exercise_Users']
+      }
     });
 
     if (!training_session) {

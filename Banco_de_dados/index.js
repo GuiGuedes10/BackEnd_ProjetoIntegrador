@@ -4,7 +4,7 @@ const syncDB = async () => {
   try {
     await sequelize.authenticate();
 
-    await sequelize.sync({force:true});
+    await sequelize.sync();
   } catch (error) {
     console.log("erro", error);
   }

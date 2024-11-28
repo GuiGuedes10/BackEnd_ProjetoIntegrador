@@ -30,8 +30,7 @@ User_Training.hasMany(User_Training_Session, { foreignKey: "UserTrainingId" });
 User_Training_Session.belongsTo(User, { foreignKey: "UserId" });
 User_Training_Session.belongsTo(User_Training, { foreignKey: "UserTrainingId" });
 User_Training_Session.belongsToMany(Exercise_User, {
-  through: User_Training_Session_Exercise,
-  as: "Exercise_Users"
+  through: User_Training_Session_Exercise
 });
 
 
