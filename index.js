@@ -11,6 +11,7 @@ import { trainingSessionRoute } from "./routes/training_session.js";
 import { exerciseRoute } from "./routes/exercises.js";
 import { sessionsRoute } from "./routes/sessions.js";
 import { TokenDecode, TokenVerification } from "./utils/TokenHandle.js";
+import { GoalsRoute } from "./routes/goal.js";
 
 await syncDB();
 
@@ -65,6 +66,8 @@ app.use(trainingSessionRoute);
 app.use(sessionsRoute);
 
 app.use(exerciseRoute);
+
+app.use(GoalsRoute);
 
 const port = process.env.PORT;
 

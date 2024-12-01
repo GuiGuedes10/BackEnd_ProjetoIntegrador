@@ -4,6 +4,9 @@ import { Exercise_User } from "./exercise_user.js";
 import { User_Training } from "./user_training.js";
 import { User_Training_Session } from "./user-training-session.js";
 import { User_Training_Session_Exercise } from "./user-training-session-exercises.js";
+import { User_goal } from "./user_goal.js";
+
+User_goal.hasOne(User, {foreignKey: "UserId"});
 
 User.hasMany(Exercise_User, { foreignKey: "UserId" });
 User.hasMany(User_Training, { foreignKey: "UserId" });
