@@ -6,11 +6,12 @@ import { User_Training_Session } from "./user-training-session.js";
 import { User_Training_Session_Exercise } from "./user-training-session-exercises.js";
 import { User_goal } from "./user_goal.js";
 
-User_goal.hasOne(User, {foreignKey: "UserId"});
+User_goal.belongsTo(User, {foreignKey: "UserId"});
 
 User.hasMany(Exercise_User, { foreignKey: "UserId" });
 User.hasMany(User_Training, { foreignKey: "UserId" });
 User.hasMany(User_Training_Session, { foreignKey: "UserId" });
+User.hasOne(User_goal);
 Exercise.hasMany(Exercise_User, { foreignKey: "ExerciseId" });
 
 Exercise_User.belongsTo(User, { foreignKey: "UserId" });

@@ -1,3 +1,4 @@
-import { User_goal } from "./user_goal.js";
+import { DefineUserGoal } from "./user_goal.js";
+import { get_user_goal } from "./get_goal_of_user.js";
 
-export {User_goal};
+export {DefineUserGoal, get_user_goal};

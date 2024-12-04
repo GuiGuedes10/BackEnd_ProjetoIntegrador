@@ -1,10 +1,13 @@
 import { Exercise } from "../../Banco_de_dados/models/index.js";
+import { sequelize } from "../../Banco_de_dados/sq/index.js";
 
 export async function create_exercise(req, res) {
   try {
     const data = req.body;
 
-    const new_exercise = await Exercise.create(data);
+    const t = await sequelize.transaction();
+    const new_exercise = await Exercise.create(data, { transaction: t });
+    await t.commit();
 
     res
       .status(200)
@@ -13,6 +16,7 @@ export async function create_exercise(req, res) {
         exercise_id: new_exercise.id,
       });
   } catch (error) {
+    await t.rollback();
     res
       .status(500)
       .send({ message: "Erro no servidor. Tentar novamente mais tarde" });

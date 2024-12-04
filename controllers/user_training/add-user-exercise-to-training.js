@@ -2,6 +2,7 @@ import {
   User_Training,
   Exercise_User,
 } from "../../Banco_de_dados/models/index.js";
+import { sequelize } from "../../Banco_de_dados/sq/index.js";
 
 export async function add_user_exercise_to_training(req, res) {
   try {
@@ -21,12 +22,15 @@ export async function add_user_exercise_to_training(req, res) {
       return;
     }
 
-    await training.addExercise_Users(exerciseUser);
+    const t = await sequelize.transaction();
+    await training.addExercise_Users(exerciseUser, { transaction: t });
+    await t.commit();
 
     res.status(200).send({
       message: "Exercício adicionado ao treino com sucesso",
     });
   } catch (error) {
+    await t.rollback();
     console.log("Error add_user_exercise_to_training:", error);
     res.status(500).send({
       message: "Erro no servidor. Tentar novamente mais tarde",
