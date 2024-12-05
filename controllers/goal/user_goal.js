@@ -14,13 +14,11 @@ export async function DefineUserGoal(req, res) {
             await User_goal.create({
                 UserId: Userid,
                 weeklyHours: Hours
-            }, { transaction: t });
-            await t.commit();
+            });
             res.status(200).send({ message: "Meta do usuario criada com sucesso" })
         }
 
         else {  
-            const t = await sequelize.transaction();
             const newUserGoal = await User_goal.update(
                 {
                     weeklyHours: Hours
@@ -30,9 +28,7 @@ export async function DefineUserGoal(req, res) {
                         UserId: Userid
                     }
                 },
-                { transaction: t }
             )
-            await t.commit();
             if (newUserGoal) {
                 res.status(200).send({ message: "Meta do usuario alterada com sucesso" })
             }
