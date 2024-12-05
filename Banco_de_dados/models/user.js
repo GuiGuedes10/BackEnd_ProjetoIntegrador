@@ -9,7 +9,6 @@ export const User = sequelize.define("Pi_User", {
   Email: {
     type: DataTypes.STRING,
     allowNull: false,
-    unique: true,
   },
   telefone: {
     type: DataTypes.STRING,
@@ -18,7 +17,6 @@ export const User = sequelize.define("Pi_User", {
   CPF: {
     type: DataTypes.STRING,
     allowNull: false,
-    unique: true,
   },
   Senha: {
     type: DataTypes.STRING,
@@ -29,4 +27,9 @@ export const User = sequelize.define("Pi_User", {
     defaultValue: "Usuario",
     allowNull: false,
   },
+  Ativo: {
+    type: DataTypes.BOOLEAN,
+    defaultValue: true,
+    allowNull: false,
+  }
 });

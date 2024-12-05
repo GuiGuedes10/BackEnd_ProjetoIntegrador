@@ -24,18 +24,21 @@ export async function get_Week_Of_User(req, res) {
             }
         })
 
-        for (let index = 0; index < UserWeek.length; index++) {
-            const startTime = UserWeek[index].startTime;
-            const endTime = UserWeek[index].endTime || new Date(); 
+        if (UserWeek.length > 0) {
+            for (let index = 0; index < UserWeek.length; index++) {
+                const startTime = UserWeek[index].startTime;
+                const endTime = UserWeek[index].endTime || new Date();
 
-            const duration = endTime - startTime;
+                const duration = endTime - startTime;
 
-            UserWeek[index].dataValues.duration = duration;
+                UserWeek[index].dataValues.duration = duration;
+            }
         }
 
         res.status(200).send(UserWeek)
 
     } catch (error) {
+        console.log(error)
         res.status(500).send({ message: 'Erro: ' + error })
     }
 }

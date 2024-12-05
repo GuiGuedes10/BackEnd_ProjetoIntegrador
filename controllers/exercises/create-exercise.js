@@ -2,6 +2,8 @@ import { Exercise } from "../../Banco_de_dados/models/index.js";
 import { sequelize } from "../../Banco_de_dados/sq/index.js";
 
 export async function create_exercise(req, res) {
+  const t = await sequelize.transaction();
+  
   try {
     const data = req.body;
 

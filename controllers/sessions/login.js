@@ -6,7 +6,10 @@ export async function login(req, res){
     try {
       const data = req.body;
       const user = await User.findOne({
-        where:{Email: data.Email}
+        where:{
+          Email: data.Email,
+          Ativo: true
+        }
       });
       if(!user){
         res.status(401).send({ message: "Usuario ou senha invalidos."});
