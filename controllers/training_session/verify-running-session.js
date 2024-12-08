@@ -1,17 +1,18 @@
-import { User_Training, User_Training_Session, User_Training_Session_Exercise } from "../../Banco_de_dados/models/index.js";
+import { User_Training, User_Training_Session } from "../../Banco_de_dados/models/index.js";
 
 export async function verify_user_running_session(req, res) {
 
-    const { userid } = req.body;
-    console.log(userid)
+    const { UserId } = req.body;
+    console.log(UserId)
 
     try {
         const ExisteRunningSession = await User_Training_Session.findOne({
             where: {
-                UserId: userid,
+                UserId: UserId,
                 completed: false
             }
         })
+        console.log(ExisteRunningSession);
 
         const RunningExercices = await User_Training.findOne({
             where:{

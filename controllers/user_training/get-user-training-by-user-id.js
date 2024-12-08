@@ -4,6 +4,8 @@ export async function get_user_training_by_user_id(req, res) {
   try {
     const { userId } = req.body;
 
+    console.log(userId)
+
     const trainings = await User_Training.findAll({
       where: {
         UserId: userId
