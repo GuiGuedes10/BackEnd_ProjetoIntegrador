@@ -35,8 +35,6 @@ export async function get_everthing_hours(req, res) {
                 UserWeekDuration += duration;
             }
         }
-        console.log(UserWeekDuration)
-        console.log(UserWeek);
 
 
         const UserTotalHours = await User_Training_Session.findAll({

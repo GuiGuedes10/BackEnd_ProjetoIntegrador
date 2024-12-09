@@ -8,7 +8,7 @@ import {
     get_Week_Of_User,
     user_running_session,
     verify_user_running_session,
-    get_everthing_hours
+    
 } from "../controllers/training_session/index.js";
 
 export const trainingSessionRoute = express
@@ -21,4 +21,3 @@ export const trainingSessionRoute = express
   .post("/get_Week_Of_User", get_Week_Of_User)
   .post("/user_running_session", user_running_session)
   .post("/verify_user_running_session", verify_user_running_session)
-  .post("/get_everthing_hours", get_everthing_hours);

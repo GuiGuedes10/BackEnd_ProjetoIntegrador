@@ -12,6 +12,7 @@ import { exerciseRoute } from "./routes/exercises.js";
 import { sessionsRoute } from "./routes/sessions.js";
 import { TokenDecode, TokenVerification } from "./utils/TokenHandle.js";
 import { GoalsRoute } from "./routes/goal.js";
+import { ManagerRoute } from "./routes/manager.js"
 
 await syncDB();
 
@@ -44,7 +45,7 @@ app.use((req, res, next) => {
 });
 
 app.use((req, res, next) => {
-  if (req.path === "/get_usuarios") {
+  if (req.path == "/get_usuarios" || req.path == "/get_everthing_hours" || req.path == "/Validate_Maneger") {
     const token = req.headers.authorization;
     const decoded = TokenDecode(token);
 
@@ -68,6 +69,8 @@ app.use(sessionsRoute);
 app.use(exerciseRoute);
 
 app.use(GoalsRoute);
+
+app.use(ManagerRoute);
 
 const port = process.env.PORT;
 
